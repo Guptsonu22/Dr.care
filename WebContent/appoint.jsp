@@ -19,8 +19,8 @@
 		String time=request.getParameter("time");
 		String message=request.getParameter("message");
 		
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","root");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","Root@1234");
 		String s="insert into apoint values(?,?,?,?,?,?,?)";
 		PreparedStatement p=cn.prepareStatement(s);
 		p.setString(1,fname);

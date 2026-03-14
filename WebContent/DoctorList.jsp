@@ -32,16 +32,19 @@ mark {
 		background: orange;
   		color: black;
 }
-.text-block {
-		position: absolute;
-    	bottom: 490px;
-    	right:100px;
-    	background-color: lightgreen;
-    	color: white;
-    	padding-left: 80px;
-    	padding-right: 80px;
-    	border-radius:30px;
-    	font-size: 20px;
+.search-container {
+		text-align: center;
+		margin: 20px 0;
+		background-color: lightgreen;
+		padding: 10px;
+		display: inline-block;
+		border-radius: 30px;
+}
+.search-container input {
+		padding: 5px 10px;
+		border-radius: 15px;
+		border: 1px solid #ccc;
+		margin-left: 10px;
 }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -64,10 +67,12 @@ $("#context").unmark().mark(searchTerm);
 	  }).trigger("input.highlight").focus();
 	});
 </script>
-<div class="text-block">
-<table style="width: 20px; height: 30px; border: 0;">
-<tr><td style="font-size: 40px;color: black;">Search </td><td><input type="text" placeholder="search for specialty"></td></tr></table>
+<center>
+<div class="search-container">
+	<span style="font-size: 25px; color: black; font-weight: bold;">Search </span>
+	<input type="text" placeholder="search for specialty">
 </div>
+</center>
 
 		<%  
 			List<DocBean> list=DoctorDao.getAllDoctors();  
@@ -81,6 +86,7 @@ $("#context").unmark().mark(searchTerm);
     <th>Specialization</th>
     <th>Timing</th>
     <th>Fees</th>
+    <th>Action</th>
   </tr>
   	<c:forEach items="${list}" var="d">  
 			<tr>
@@ -89,6 +95,7 @@ $("#context").unmark().mark(searchTerm);
 			<td>${d.getSpecialty()}</td>
 			<td>9:00 AM to 5:00 PM</td>
 			<td>500/-</td>
+			<td><a href="appoint.jsp?id=${d.getId()}&specialty=${d.getSpecialty()}" style="padding: 5px 10px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Book</a></td>
 			</tr>  
 			</c:forEach>  	
 </table></center>

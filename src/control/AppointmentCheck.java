@@ -52,23 +52,35 @@ public class AppointmentCheck extends HttpServlet {
 		            		           
 			       if(session.getAttribute("email")==null){
  					response.sendRedirect("DoctorLogin.jsp");
+ 					return;
  					}
- 			       else if(session!=null)	{
+ 			       else	{
  					String email=(String) session.getAttribute("email");
  					out.println("Hello ,  "+email);
  					}
 		
 		  
 	       String email=(String) session.getAttribute("email");
-	       int id=Integer.parseInt(request.getParameter("id"));
+	       String idParam = request.getParameter("id");
+	       if (idParam == null || idParam.trim().isEmpty()) {
+	           out.print("<center><h3> Error: Doctor ID is missing </h3><br><a href='DoctorHome.jsp'>Back</a></center></body></html>");
+	           return;
+	       }
+	       int id;
+	       try {
+	           id = Integer.parseInt(idParam);
+	       } catch (NumberFormatException e) {
+	           out.print("<center><h3> Error: Invalid Doctor ID </h3><br><a href='DoctorHome.jsp'>Back</a></center></body></html>");
+	           return;
+	       }
 	       out.print("<center> <h1 style='background-color:lightgreen' >My Appointments</h1>");
 	       out.print("<table border='1px solid black' height='10%' width='70%'><tr>");
-	       out.print("<th style='background-color:#2874A6', text-color:'red'>Patient Name</th>	<th style='background-color:#2874A6'>Email</th> 	<th style='background-color:#2874A6'>Contact</th>");
-	       out.print("<th style='background-color:#2874A6'>Age</th> 	<th style='background-color:#2874A6'>Date</th> 		<th style='background-color:#2874A6'>Specialty</th>");
-	       out.print("<th style='background-color:#2874A6'>Description</th>		<th style='background-color:#2874A6'>Cancel</th></tr>");
+	       out.print("<th style='background-color:#2874A6; color:white;'>Patient Name</th>	<th style='background-color:#2874A6; color:white;'>Email</th> 	<th style='background-color:#2874A6; color:white;'>Contact</th>");
+	       out.print("<th style='background-color:#2874A6; color:white;'>Age</th> 	<th style='background-color:#2874A6; color:white;'>Date</th> 		<th style='background-color:#2874A6; color:white;'>Specialty</th>");
+	       out.print("<th style='background-color:#2874A6; color:white;'>Description</th>		<th style='background-color:#2874A6; color:white;'>Cancel</th></tr>");
 	       
 	       DocBean dbe = DoctorDao.getDoctor(id,email);
-	       if(id==dbe.getId()||email==dbe.getEmail())	{
+	       if(dbe != null && (id == dbe.getId() || email.equals(dbe.getEmail())))	{
 	       ArrayList<AppointmentBean> list=AppointmentDao.getAppointById(id);
 	       for (AppointmentBean apps : list) {
 	    	   out.print("<tr style='background-color:white'><td>"+apps.getName()+"</td><td>"+apps.getEmail()+"</td>");
@@ -81,6 +93,7 @@ public class AppointmentCheck extends HttpServlet {
 	    	   out.print("<h3> Please Enter your Correct Id </h3>");
 	       }
 		   out.print("</table>");
+		   out.print("<br><a href='DoctorHome.jsp' style='padding: 10px 20px; background: #2874A6; color: white; text-decoration: none; border-radius: 5px;'>Back to Dashboard</a>");
 		  
 		   out.print("</div></center>");
 		  

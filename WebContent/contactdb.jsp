@@ -15,8 +15,8 @@
 		String subject=request.getParameter("subject");
 		String message=request.getParameter("message");
 		
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","root");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","Root@1234");
 		String s="insert into contact values(?,?,?,?)";
 		PreparedStatement p=cn.prepareStatement(s);
 		p.setString(1,name);

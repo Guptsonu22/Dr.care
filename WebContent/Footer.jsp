@@ -13,12 +13,10 @@
 
 </head>
 <body>
-	<center>
-		<span style="font-family: Forte; font-size: 4vw;">Contact Us</span>
-	</center>
-	<hr style="border: 1px solid red">
+	<hr style="border: 1px solid #21618C; margin: 20px 0;">
 	<div>
-	<table>
+	<center>
+	<table style="width: 80%;">
 		<tr>
 			<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
 			<td>
@@ -44,6 +42,7 @@
 		</tr>
 
 	</table>
+	</center>
 	</div>
 </body>
 </html>

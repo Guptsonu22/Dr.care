@@ -120,7 +120,7 @@
 		
 		<tr><td>Age:</td><td><input type="number" name="age" min="1" max="100" required></td> </tr>
 		
-		<tr><td>Date</td><td><input type="date" name="day" max="2018-12-31" min="2018-01-02" required></td></tr>
+		<tr><td>Date</td><td><input type="date" name="day" required></td></tr>
 		
 		<tr><td>Specialty:</td><td><select name="specialty">
 		<option disabled="disabled">Select</option>

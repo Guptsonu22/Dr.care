@@ -2,7 +2,7 @@
 
 [![Java](https://img.shields.io/badge/Java-8+-orange.svg)](https://www.oracle.com/java/)
 [![JSP](https://img.shields.io/badge/JSP-2.3+-blue.svg)](https://www.oracle.com/technetwork/java/javaee/jsp/)
-[![MySQL](https://img.shields.io/badge/MySQL-5.7+-green.svg)](https://www.mysql.com/)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-green.svg)](https://www.mysql.com/)
 [![Bootstrap](https://img.shields.io/badge/Bootstrap-4.0+-purple.svg)](https://getbootstrap.com/)
 [![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
@@ -72,8 +72,8 @@
 - **jQuery** - JavaScript library
 
 ### Database
-- **MySQL 5.7+** - Relational database
-- **JDBC Driver** - Database connectivity
+- **MySQL 8.0+** - Relational database
+- **MySQL Connector/J 8.0.28+** - Database connectivity
 
 ### Server
 - **Apache Tomcat 8.5+** - Web server
@@ -136,9 +136,9 @@ Dcare/
 ### Prerequisites
 - **Java Development Kit (JDK) 8 or higher**
 - **Apache Tomcat Server 8.5 or higher**
-- **MySQL Database Server 5.7 or higher**
+- **MySQL Database Server 8.0 or higher**
 - **Eclipse IDE or IntelliJ IDEA** (recommended)
-- **MySQL JDBC Driver**
+- **MySQL JDBC Driver (8.0.28 recommended)**
 
 ### Step 1: Clone the Repository
 ```bash
@@ -243,11 +243,11 @@ Update database connection in `src/dba/ConnectionProvider.java` if needed:
 public static Connection getConnection() {
     Connection con = null;
     try {
-        Class.forName("com.mysql.jdbc.Driver");
+        Class.forName("com.mysql.cj.jdbc.Driver");
         con = DriverManager.getConnection(
             "jdbc:mysql://localhost:3306/dcare",
             "root", 
-            "root"
+            "Root@1234"
         );
     } catch (Exception e) {
         System.out.println("Error " + e);

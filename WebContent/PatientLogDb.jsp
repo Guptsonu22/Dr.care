@@ -12,8 +12,8 @@
 		String email=request.getParameter("email");
 		String password=request.getParameter("password");
 		
-		Class.forName("com.mysql.jdbc.Driver");
-		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","root");
+		Class.forName("com.mysql.cj.jdbc.Driver");
+		Connection cn=DriverManager.getConnection("jdbc:mysql://localhost:3306/dcare","root","Root@1234");
 		String s="select * from apointment where email=? and password=?";
 		PreparedStatement p=cn.prepareStatement(s);
 		p.setString(1,email);
